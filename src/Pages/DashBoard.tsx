@@ -1,8 +1,11 @@
+import NavBar from "../Components/NavBar/NavBar";
+
 const DashBoard = () => {
   return (
     <>
-      <div className="flex">
-        <h1>Hello World</h1>
+      <div className="flex bg-[#f1f2f3]">
+        <NavBar />
+        <div className="flex"></div>
       </div>
     </>
   );

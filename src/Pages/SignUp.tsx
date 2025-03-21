@@ -1,20 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
-import {
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-} from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../Context/config/Firebase";
 import Button from "../Components/Button/Button";
 import Inputs from "../Components/Inputs/Inputs";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isRegistering, setIsRegistering] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -34,14 +33,7 @@ const SignUp = () => {
         );
         console.log("User registered:", userCredential.user);
         toast.success("User registered successfully!");
-      } else {
-        const userCredential = await signInWithEmailAndPassword(
-          auth,
-          formData.email,
-          formData.password
-        );
-        console.log("User signed in:", userCredential.user);
-        toast.success("Signed in successfully!");
+        navigate("/sign-in");
       }
     } catch (error: any) {
       setError(error.message);
@@ -77,11 +69,15 @@ const SignUp = () => {
               alt="MelonPay Logo"
               className="w-6"
             />
-            <h1 className="text-green-700 text-lg md:text-xl font-bold">
-              {isRegistering ? "Sign Up" : "Sign In"}
-            </h1>
+            <div className="flex flex-col">
+              <h1 className="text-green-700 text-lg md:text-xl font-bold">
+                MelonPay
+              </h1>
+            </div>
           </div>
-
+          <h1 className="text-green-700 text-lg md:text-xl font-bold">
+            {isRegistering ? "Sign Up" : "Sign In"}
+          </h1>
           {/* Email Input */}
           <Inputs
             label="Email"
