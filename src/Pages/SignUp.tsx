@@ -12,7 +12,6 @@ const SignUp = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [isRegistering, setIsRegistering] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,16 +24,14 @@ const SignUp = () => {
     setIsLoading(true);
 
     try {
-      if (isRegistering) {
-        const userCredential = await createUserWithEmailAndPassword(
-          auth,
-          formData.email,
-          formData.password
-        );
-        console.log("User registered:", userCredential.user);
-        toast.success("User registered successfully!");
-        navigate("/");
-      }
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        formData.email,
+        formData.password
+      );
+      console.log("User registered:", userCredential.user);
+      toast.success("User registered successfully!");
+      navigate("/");
     } catch (error: any) {
       setError(error.message);
       console.error("Error:", error);
@@ -57,7 +54,7 @@ const SignUp = () => {
           />
         </div>
 
-        {/* Right Side - Sign Up / Sign In Form */}
+        {/* Right Side - Sign Up Form */}
         <form
           onSubmit={handleSubmit}
           className="flex flex-col space-y-4 bg-white p-6 md:p-8 shadow-md rounded-lg w-full max-w-md"
@@ -75,9 +72,7 @@ const SignUp = () => {
               </h1>
             </div>
           </div>
-          <h1 className="text-green-700 text-lg md:text-xl font-bold">
-            {isRegistering ? "Sign Up" : "Sign In"}
-          </h1>
+          <h1 className="text-green-700 text-lg md:text-xl font-bold">Sign Up</h1>
           {/* Email Input */}
           <Inputs
             label="Email"
@@ -108,32 +103,16 @@ const SignUp = () => {
             isLoading={isLoading}
             className="bg-green-700 text-white py-2 md:py-3 rounded-lg"
           >
-            {isLoading
-              ? isRegistering
-                ? "Registering..."
-                : "Signing In..."
-              : isRegistering
-                ? "Sign Up"
-                : "Sign In"}
+            {isLoading ? "Signing Up..." : "Sign Up"}
           </Button>
-
           {/* Extra Links */}
           <div className="flex flex-col text-center text-sm text-gray-600">
             <p>
-              {isRegistering
-                ? "Already have an account?"
-                : "Don't have an account?"}
-              <button
-                type="button"
-                onClick={() => setIsRegistering(!isRegistering)}
-                className="text-green-600 ml-1"
-              >
-                {isRegistering ? "Sign In" : "Sign Up"}
-              </button>
+              Already have an account?{" "}
+              <a href="/" className="text-green-600">
+                Sign In
+              </a>
             </p>
-            <a href="forgotpassword" className="text-green-600">
-              Forgot Password?
-            </a>
           </div>
         </form>
       </div>
