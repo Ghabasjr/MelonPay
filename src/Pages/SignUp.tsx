@@ -33,7 +33,7 @@ const SignUp = () => {
         );
         console.log("User registered:", userCredential.user);
         toast.success("User registered successfully!");
-        navigate("/sign-in");
+        navigate("/");
       }
     } catch (error: any) {
       setError(error.message);
@@ -113,8 +113,8 @@ const SignUp = () => {
                 ? "Registering..."
                 : "Signing In..."
               : isRegistering
-              ? "Sign Up"
-              : "Sign In"}
+                ? "Sign Up"
+                : "Sign In"}
           </Button>
 
           {/* Extra Links */}

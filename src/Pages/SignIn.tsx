@@ -42,7 +42,7 @@ const SignIn = () => {
 
       console.log("User signed in:", userCredential.user);
       toast.success("Signed in successfully");
-      navigate("/dash-board");
+      navigate("/dashboard");
     } catch (error: any) {
       setError(error.message);
       console.error("Error signing in:", error);
@@ -123,7 +123,7 @@ const SignIn = () => {
           <div className="flex flex-col text-center text-sm text-gray-600">
             <p>
               Don't have an account?{" "}
-              <a href="/sign-up" className="text-green-600">
+              <a href="/signup" className="text-green-600">
                 Sign Up
               </a>
             </p>
