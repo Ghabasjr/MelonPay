@@ -21,7 +21,7 @@ const RightSideModal: React.FC<RightSideModalProps> = ({
   onNext,
   children,
 }) => {
-  const [slideOpen, setSlideOpen] = useState(isModalOpen);
+  const [, setSlideOpen] = useState(isModalOpen);
 
   const closeModal = () => {
     setSlideOpen(false);
@@ -38,9 +38,8 @@ const RightSideModal: React.FC<RightSideModalProps> = ({
     >
       {/* Background backdrop */}
       <div
-        className={`fixed inset-0 opacity-20 ${
-          isModalOpen ? "bg-slate-600" : ""
-        }`}
+        className={`fixed inset-0 opacity-20 ${isModalOpen ? "bg-slate-600" : ""
+          }`}
       ></div>
 
       <div className="fixed inset-0 overflow-hidden">
@@ -48,9 +47,8 @@ const RightSideModal: React.FC<RightSideModalProps> = ({
           <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16">
             {/* Slide-over panel */}
             <div
-              className={`pointer-events-auto w-screen max-w-lg transform transition duration-500 ease-in-out sm:duration-700 ${
-                isModalOpen ? "translate-x-0" : "translate-x-full"
-              }`}
+              className={`pointer-events-auto w-screen max-w-lg transform transition duration-500 ease-in-out sm:duration-700 ${isModalOpen ? "translate-x-0" : "translate-x-full"
+                }`}
               onAnimationEnd={() => !isModalOpen && setSlideOpen(false)}
             >
               <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">

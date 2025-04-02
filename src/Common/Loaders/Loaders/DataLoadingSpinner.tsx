@@ -1,5 +1,4 @@
-import React from "react";
-// import { ProgressSpinner } from 'primereact/progressspinner';
+import { ProgressSpinner } from 'primereact/progressspinner';
 
 type DataLoadingSpinnerProps = {
   main?: boolean;
@@ -17,11 +16,10 @@ const DataLoadingSpinner = ({
     : { width: "30px", height: "30px" };
   return (
     <div
-      className={`items-center justify-center ${
-        noPadding ? "" : "loaderWrapper"
-      } ${main ? "main" : ""}`}
+      className={`items-center justify-center ${noPadding ? "" : "loaderWrapper"
+        } ${main ? "main" : ""}`}
     >
-      {/* <ProgressSpinner style={spinnerSize} strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s" /> */}
+      <ProgressSpinner style={spinnerSize} strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s" />
     </div>
   );
 };
